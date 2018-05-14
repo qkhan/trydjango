@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+<div class='row'>
+<div class='col-sm-6 col-sm-offset-3'>
+
+{% block content %}
+{% if title %}
+<h1 class='{% if title_align_center %}text-align-center{% endif %}'>{{ title }}</h1>
+{% endif %}
+
+<form method='POST' action=''>{% csrf_token %}
+{% if form.errors %}
+  {% for key, value in form.errors.iteritems %}
+      <p>{{ key }}: {{ value.as_text }}</p>
+  {% endfor %}
+{% endif %}
+
+{{ form.non_field_errors }}
+<p>{{ form.user }}</p>
+
+<p>
+  <!-- {% if form.title.errors %}
+    class='some-field-error'
+  {% endif %} -->
+   <label for="{{ form.title.id_for_label }}">{{ form.title.label }}:</label>
+   {{ form.title }}
+   {% if form.title.errors %}
+    <div style='color:red'>Errors with title are: {{ form.title.errors.as_text }}</div>
+   {% endif %}
+</p>
+<p>
+  <label for="{{ form.slug.id_for_label }}">{{ form.slug.label }}:</label>
+  {{ form.slug }}
+  {% if form.slug.errors %}
+   <div style='color:red'>Errors with Slug are: {{ form.slug.errors.as_text }}</div>
+  {% endif %}
+
+</p>
+<p>{{ form.image }}</p>
+<p>
+  <label for="{{ form.content.id_for_label }}">{{ form.content.label }}:</label>
+  {{ form.content }}
+  {% if form.content.errors %}
+   <div style='color:red'>Errors with Content are: {{ form.content.errors.as_text }}</div>
+  {% endif %}
+
+</p>
+
+
+<input type='submit' value='submit'/>
+</form>
+</div>
+</div>
+{% endblock %}

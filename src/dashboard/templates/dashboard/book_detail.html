@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ object.title }}</h1>
+<p>Slug: {{ object.slug }}</p>
+<p>description: {{ object.description }}</p>
+<p>Added BY: {{ object.added_by }}</p>
+<p>Date: {{ now|date }}</p>
+<p>Timestamp: {{ object.timestamp }}</p>
+{% endblock %}
